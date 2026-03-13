@@ -1,0 +1,1358 @@
+{
+  "name": "RED DISH",
+  "nodes": [
+    {
+      "parameters": {
+        "sendTo": "islamelhamoli@gmail.com",
+        "subject": "=🔥 NEW ORDER INBOUND! - {{ $json['Order ID'] }}]",
+        "message": "=\"Heads up, Chef!  A new challenger has entered the heat zone. We have a fresh order that needs your magic touch.  Order Details:  Order ID: #{{ $json['Order ID'] }} Customer Name: {{ $json['Customer Name'] }} Spice Priority:  Heat Level: {{ $json['Spice Level'] }} 🔥  Order Time: {{ $json.Timestamp }}  Get it blazing hot and ready for delivery!  Stay Spicy, RED DISH Order System\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2160,
+        64
+      ],
+      "id": "39e3c618-3464-4f44-8a5a-af170fc0d563",
+      "name": "Send a message",
+      "webhookId": "e29d2a55-4aa9-4a30-8d80-d4d9242ad0c2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "jEUI0IrdsZrq2vuY",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Get row(s) in sheet').item.json['Email Address'] }}",
+        "subject": "WE Bring the Heat to YOU",
+        "message": "=\"Stay Bold, {{ $json['Full Name'] }}!\n\nWe are thrilled to have served you today. Your spicy mission #{{ $('Google Sheets Trigger1').item.json['Order ID'] }} has been successfully delivered! 🌶️\n\nWe hope the heat was just right and the flavor was legendary. Next time, don't just order it—come experience the fire in person at our restaurant!\n\nSee you soon at the heat zone,\nRED DISH Team | Where Fire Meets Flavor\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1872,
+        352
+      ],
+      "id": "9c478eb4-3671-4608-bdc5-1cfe01fbea4c",
+      "name": "Send a message1",
+      "webhookId": "e29d2a55-4aa9-4a30-8d80-d4d9242ad0c2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "HA46VvB046pVVb2V",
+          "name": "Gmail account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw",
+          "mode": "list",
+          "cachedResultName": "Order Details",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet: Customer Requests",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit#gid=0"
+        },
+        "options": {
+          "columnsToWatch": [
+            "Status",
+            "Order Type",
+            "Customer Name"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        416
+      ],
+      "id": "5f0eec9b-b96d-4cd4-b3af-e91b3041a280",
+      "name": "Google Sheets Trigger1",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "p81BNEOArJGi2UdU",
+          "name": "Google Sheets Trigger account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw",
+          "mode": "list",
+          "cachedResultName": "Order Details",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet: Customer Requests",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email Sent": "SENT",
+            "Order ID": "={{ $('Google Sheets Trigger1').item.json['Order ID'] }}"
+          },
+          "matchingColumns": [
+            "Order ID"
+          ],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Order ID",
+              "displayName": "Order ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Order Type",
+              "displayName": "Order Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Spice Level",
+              "displayName": "Spice Level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Contact Method",
+              "displayName": "Contact Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Email Sent",
+              "displayName": "Email Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2096,
+        352
+      ],
+      "id": "f07a9fa1-b7a6-4275-85b9-1f485ef0abf5",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3lztFhS6IZSvBPKd",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "678d7b4b-fcbc-45e8-97db-21ac823c8cf1",
+              "leftValue": "={{ $('Google Sheets Trigger1').item.json['Order Type'] }}",
+              "rightValue": "Delivery",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "d76a4736-9b3c-46aa-a25f-e482930b9777",
+              "leftValue": "={{ $('Google Sheets Trigger1').item.json.Status }}",
+              "rightValue": "DONE",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        1648,
+        352
+      ],
+      "id": "a5d5052f-4ffb-4667-a988-c67f8566f530",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1sUNp0bkZLAAI9GxYnEUtnnNJ-NQAeGFwvqKQeIayKW0",
+          "mode": "list",
+          "cachedResultName": "customer info",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sUNp0bkZLAAI9GxYnEUtnnNJ-NQAeGFwvqKQeIayKW0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 538790653,
+          "mode": "list",
+          "cachedResultName": "info",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sUNp0bkZLAAI9GxYnEUtnnNJ-NQAeGFwvqKQeIayKW0/edit#gid=538790653"
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1424,
+        352
+      ],
+      "id": "851f919b-2dd8-4cd4-8a5a-37932bdbec2f",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3lztFhS6IZSvBPKd",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are the official AI ordering assistant for RED DISH, a bold and modern spicy food restaurant.\n\nBrand identity:\n- Restaurant name: RED DISH\n- Slogan: \"Where Fire Meets Flavor\"\n- Tone: warm, energetic, modern, helpful, and slightly bold\n- Your job: help customers place food orders clearly and efficiently\n\nYour behavior rules:\n1. Always be polite, helpful, and concise.\n2. Guide the customer step by step through the order process.\n3. Ask only one clear question at a time.\n4. Do not invent menu items, prices, or policies.\n5. Only recommend items from the official menu below.\n6. Always confirm the customer’s selections before finalizing the order.\n7. If the customer asks for recommendations, suggest items based on spice preference.\n8. If the customer wants mild food, avoid recommending extreme spicy items first.\n9. If the customer wants very spicy food, recommend the challenge meals.\n10. Use simple, natural conversation.\n11. Keep answers short and practical.\n12. Use EGP as the currency.\n13. If the order is incomplete, continue collecting missing information.\n14. If the user is just browsing, help them explore the menu without forcing the order.\n15. Never finalize an order unless the customer clearly confirms it.\n\nYour required order flow:\n- Greet the customer\n- Ask for customer name\n- Ask what they want to order\n- If needed, show categories:\n  1. Signature Dishes\n  2. Challenge Meals\n  3. Sides\n  4. Drinks\n- Help them choose item(s)\n- Ask for spice level when relevant: Mild / Medium / Hot / Extreme\n- Ask for quantity for each item\n- Ask if they want to add more items\n- When done, provide a full order summary\n- Calculate the total price\n- Ask for final confirmation\n- After confirmation, clearly state that the order is ready to be submitted\n\nImportant data to collect:\n- Customer name\n- Selected item(s)\n- Spice level for each spicy item\n- Quantity for each item\n- Optional notes if the customer gives any\n\nOfficial menu:\n\nCategory: Signature Dishes\n1. Volcano Chicken Bowl\n   - Description: Spicy grilled chicken served over seasoned rice with sautéed vegetables and signature hot chili sauce\n   - Spice level default: Medium\n   - Price: 120 EGP\n\n2. Inferno Beef Wrap\n   - Description: Grilled beef wrap with smoked chili sauce, cheese, crispy onions, and fresh vegetables\n   - Spice level default: Medium\n   - Price: 135 EGP\n\n3. Red Fire Wings\n   - Description: Crispy chicken wings tossed in our signature spicy sauce\n   - Spice level default: Hot\n   - Price: 95 EGP\n\n4. Spicy Chicken Sandwich\n   - Description: Fried chicken breast with hot sauce, lettuce, and melted cheese\n   - Spice level default: Medium\n   - Price: 110 EGP\n\nCategory: Challenge Meals\n5. Dragon Fire Burger\n   - Description: Beef burger with jalapeños, hot chili sauce, cheese, and crispy onions\n   - Spice level default: Hot\n   - Price: 145 EGP\n\n6. Hell Bowl\n   - Description: Fried chicken pieces with extremely spicy sauce served over rice\n   - Spice level default: Extreme\n   - Price: 140 EGP\n\n7. Red Dish Challenge Plate\n   - Description: Ultra-spicy chicken dish made with Carolina Reaper sauce for extreme heat lovers\n   - Spice level default: Extreme\n   - Price: 160 EGP\n\nCategory: Sides\n8. Spicy Fries\n   - Description: French fries topped with chili seasoning\n   - Spice level default: Mild\n   - Price: 45 EGP\n\n9. Loaded Fire Fries\n   - Description: Fries with cheese sauce, spicy beef topping, and chili flakes\n   - Spice level default: Medium\n   - Price: 65 EGP\n\n10. Jalapeño Cheese Bites\n   - Description: Crispy cheese bites filled with jalapeño peppers\n   - Spice level default: Mild\n   - Price: 70 EGP\n\n11. Onion Rings\n   - Description: Crispy fried onion rings with spicy dip\n   - Spice level default: Mild\n   - Price: 40 EGP\n\nCategory: Drinks\n12. Cola\n   - Description: Classic cold cola\n   - Price: 25 EGP\n\n13. Lemon Mint\n   - Description: Fresh lemon juice with mint\n   - Price: 35 EGP\n\n14. Ice Tea\n   - Description: Cold brewed iced tea\n   - Price: 35 EGP\n\n15. Milkshake\n   - Description: Vanilla or chocolate milkshake to balance the heat\n   - Price: 45 EGP\n\nSpice level guide:\n- Mild = low heat\n- Medium = balanced heat\n- Hot = strong spice\n- Extreme = very intense spice\n\nRecommendation rules:\n- If customer says \"I want something light\" → suggest Spicy Chicken Sandwich or Inferno Beef Wrap\n- If customer says \"I love spicy food\" → suggest Red Fire Wings, Dragon Fire Burger, or Hell Bowl\n- If customer says \"I want the hottest item\" → suggest Red Dish Challenge Plate\n- If customer asks for sides → suggest Spicy Fries, Loaded Fire Fries, or Jalapeño Cheese Bites\n- If customer wants something to reduce the heat → suggest Milkshake or Lemon Mint\n\nOrder summary format:\nCustomer Name: [name]\n\nItems:\n1. [Item Name] — [Spice Level if applicable] — Qty: [x] — [line total] EGP\n2. [Item Name] — [Spice Level if applicable] — Qty: [x] — [line total] EGP\n\nTotal: [total] EGP\n\nThen ask:\n“Would you like to confirm your order?”\n\nIf the customer confirms, reply:\n“Great — your order is confirmed and ready to be submitted. Thank you for choosing RED DISH — Where Fire Meets Flavor 🔥”\n\nIf the customer wants to modify the order, help them update it clearly.\n\nStart every new conversation with:\n“🔥 Welcome to RED DISH — Where Fire Meets Flavor!\nI’m here to help you place your order.\nWhat’s your name?”",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        816,
+        0
+      ],
+      "id": "36068db7-dceb-486d-9bad-9db648255cc3",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        752,
+        224
+      ],
+      "id": "a0de91e5-bc53-4e7e-aeb8-1844761695cf",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "X2mlrm9MYAlQ03VW",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "inline_query",
+          "callback_query",
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        112,
+        48
+      ],
+      "id": "7946f3e3-2cbd-4110-b43e-085699c246b2",
+      "name": "Telegram Trigger",
+      "webhookId": "3b66a50b-75dc-47e6-bb7b-acc42a6f6bc6",
+      "credentials": {
+        "telegramApi": {
+          "id": "PPZPVcP8cLj1tt3d",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Get row(s) in sheet1').item.json['Email Address'] }}",
+        "subject": "=Your RED DISH Order #{{order_id}} is Blazing Hot!",
+        "message": "=\"Hello {{Customer_Name}},  Your order is officially IN THE OVEN! Get your cold water ready because things are about to get spicy.  Your Blazing Details:  Order ID: {{order_id}}  Items: {{items_list}}  Total Heat: {{total_price}} EGP  Stay Bold, RED DISH Team \n Where Fire Meets Flavor\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2608,
+        64
+      ],
+      "id": "76e76b14-5786-40fa-a510-66784ee1e873",
+      "name": "Send a message2",
+      "webhookId": "cb2d0fa3-cea9-492c-9334-51e1c6c90f59",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "HA46VvB046pVVb2V",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1sUNp0bkZLAAI9GxYnEUtnnNJ-NQAeGFwvqKQeIayKW0",
+          "mode": "list",
+          "cachedResultName": "customer info",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sUNp0bkZLAAI9GxYnEUtnnNJ-NQAeGFwvqKQeIayKW0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 538790653,
+          "mode": "list",
+          "cachedResultName": "info",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sUNp0bkZLAAI9GxYnEUtnnNJ-NQAeGFwvqKQeIayKW0/edit#gid=538790653"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1648,
+        0
+      ],
+      "id": "8d3ea0bf-e96b-4a9c-a63c-38503e89a3ed",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3lztFhS6IZSvBPKd",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw",
+          "mode": "list",
+          "cachedResultName": "Order Details",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet: Customer Requests",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Order ID": "={{ $('Get row(s) in sheet1').item.json['Order ID'] }}",
+            "Status": "working on"
+          },
+          "matchingColumns": [
+            "Order ID"
+          ],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Order ID",
+              "displayName": "Order ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Order Type",
+              "displayName": "Order Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Spice Level",
+              "displayName": "Spice Level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Contact Method",
+              "displayName": "Contact Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email Sent",
+              "displayName": "Email Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2384,
+        64
+      ],
+      "id": "0fec0580-374d-41fb-8f4d-b4bf7a3bc5bf",
+      "name": "Update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3lztFhS6IZSvBPKd",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw",
+          "mode": "list",
+          "cachedResultName": "Order Details",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet: Customer Requests",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit#gid=0"
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1856,
+        0
+      ],
+      "id": "8d2b7b41-9acb-4bfd-a8c6-c381adb0b958",
+      "name": "Get row(s) in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3lztFhS6IZSvBPKd",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "name",
+              "fieldType": "={{ $('Get row(s) in sheet').item.json['Full Name'] }}",
+              "fieldOptions": {
+                "values": [
+                  {}
+                ]
+              }
+            },
+            {
+              "fieldLabel": "address",
+              "fieldType": "={{ $('Get row(s) in sheet').item.json['Delivery Address (Required for Delivery Orders)'] }}",
+              "fieldOptions": {
+                "values": [
+                  {}
+                ]
+              }
+            },
+            {
+              "fieldLabel": "email",
+              "fieldType": "={{ $('Get row(s) in sheet').item.json['Email Address'] }}",
+              "fieldOptions": {
+                "values": [
+                  {}
+                ]
+              }
+            },
+            {
+              "fieldLabel": "order id",
+              "fieldType": "={{ $('Google Sheets Trigger1').item.json['Order ID'] }}",
+              "fieldOptions": {
+                "values": [
+                  {}
+                ]
+              }
+            },
+            {
+              "fieldLabel": "rate food",
+              "fieldType": "number",
+              "placeholder": "from 10-1"
+            },
+            {
+              "fieldLabel": "rate delivery",
+              "fieldType": "number",
+              "placeholder": "from 10-1"
+            },
+            {
+              "fieldLabel": "compare to the previous one",
+              "placeholder": "better - less - first time"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.5,
+      "position": [
+        2320,
+        352
+      ],
+      "id": "390017d0-2b7c-4f5b-91f0-7754be0fb62f",
+      "name": "Form",
+      "webhookId": "69da8b5a-03fa-42f5-968e-802d7279a560"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw",
+          "mode": "list",
+          "cachedResultName": "Order Details",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1467853691,
+          "mode": "list",
+          "cachedResultName": "Sheet: Orders Details",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit#gid=1467853691"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Order ID",
+              "displayName": "Order ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Item",
+              "displayName": "Item",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Quantity",
+              "displayName": "Quantity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Price",
+              "displayName": "Price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Total",
+              "displayName": "Total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1088,
+        240
+      ],
+      "id": "1e338a04-6f38-431f-bdc2-c7db67e0dc10",
+      "name": "Append row in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3lztFhS6IZSvBPKd",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "998064518",
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        896,
+        320
+      ],
+      "id": "86e4f31a-97da-420f-8c47-8703a0f2dc2a",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Signature Dishes",
+                    "additionalFields": {
+                      "callback_data": "Signature Dishes"
+                    }
+                  },
+                  {
+                    "text": "Challenge Meals",
+                    "additionalFields": {
+                      "callback_data": "Challenge Meals"
+                    }
+                  },
+                  {
+                    "text": "Sides",
+                    "additionalFields": {
+                      "callback_data": "Sides"
+                    }
+                  },
+                  {
+                    "text": "Drinks",
+                    "additionalFields": {
+                      "callback_data": "Drinks"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1120,
+        0
+      ],
+      "id": "4d601bd6-ff21-475b-b90d-1e6e0da663cd",
+      "name": "Send a text message",
+      "webhookId": "f0cdc626-ef06-4a7f-9622-630ed58a7bdd",
+      "credentials": {
+        "telegramApi": {
+          "id": "PPZPVcP8cLj1tt3d",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "ORDER NOW",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "ce15aa17-6070-43ef-9a98-6aa6fad89411"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "debd3eb4-c839-43d7-8883-6ca76f003499",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "MENU",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        144,
+        352
+      ],
+      "id": "ed17d189-7e34-4cc2-8a87-91f84f4cb68b",
+      "name": "Switch",
+      "alwaysOutputData": false,
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=Welcome to RED DISH! {{ $json.message.from.first_name }} Do you want to order or see the menu?",
+        "replyMarkup": "replyKeyboard",
+        "replyKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Q/As",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "MENU",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "ORDER NOW",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "replyKeyboardOptions": {},
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        16
+      ],
+      "id": "baa9f1cb-e182-47b2-ad1b-a1e58475bc47",
+      "name": "Send a text message1",
+      "webhookId": "f0cdc626-ef06-4a7f-9622-630ed58a7bdd",
+      "credentials": {
+        "telegramApi": {
+          "id": "PPZPVcP8cLj1tt3d",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "inline_query",
+          "callback_query",
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -128,
+        368
+      ],
+      "id": "008784b8-1e3d-4c4f-8675-67453cd04de1",
+      "name": "Telegram Trigger1",
+      "webhookId": "3b66a50b-75dc-47e6-bb7b-acc42a6f6bc6",
+      "credentials": {
+        "telegramApi": {
+          "id": "PPZPVcP8cLj1tt3d",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger1').item.json.message.from.id }}",
+        "text": "=",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        880,
+        464
+      ],
+      "id": "560b373c-105f-4ffa-91bd-192d4609759b",
+      "name": "Send a text message2",
+      "webhookId": "4b673d09-3132-4b4c-b984-6e219ea46588",
+      "credentials": {
+        "telegramApi": {
+          "id": "PPZPVcP8cLj1tt3d",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        960,
+        608
+      ],
+      "id": "efd366ce-a311-4104-9b4c-f641dd61c820",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bfbwU7IftZsvek92Cdeh9GrQRGkHO7l-nipXO0iu_vk",
+          "mode": "list",
+          "cachedResultName": "RED DISH MENU",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bfbwU7IftZsvek92Cdeh9GrQRGkHO7l-nipXO0iu_vk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Menu",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bfbwU7IftZsvek92Cdeh9GrQRGkHO7l-nipXO0iu_vk/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        352,
+        352
+      ],
+      "id": "b45d1dde-ec65-43eb-8724-df353b93c24b",
+      "name": "Get row(s) in sheet3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3lztFhS6IZSvBPKd",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=998064518",
+        "text": "={{ $json.data }}",
+        "replyMarkup": "=\n",
+        "forceReply": {},
+        "replyKeyboardOptions": {},
+        "replyKeyboardRemove": {},
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1168,
+        608
+      ],
+      "id": "aafb55ec-b99d-42df-b5c1-2feb0f11d6ff",
+      "name": "Send a text message3",
+      "webhookId": "5897a53c-1a24-42f3-9df7-169285fcf9d4",
+      "credentials": {
+        "telegramApi": {
+          "id": "PPZPVcP8cLj1tt3d",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Send a message1": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet2": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        []
+      ]
+    },
+    "Send a text message1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get row(s) in sheet3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message2": {
+      "main": [
+        []
+      ]
+    },
+    "Get row(s) in sheet3": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Send a text message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "cfdaec05-5a64-4029-a325-0fd2fb3e0a36",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "220d38ad0d9127a32adc69147f41fe9878ee4d8ed86fdf525e5b5b468835b683"
+  },
+  "id": "94e0QUKJDj8RdRLS",
+  "tags": []
+}
