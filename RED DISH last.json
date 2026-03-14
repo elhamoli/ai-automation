@@ -1,0 +1,1606 @@
+{
+  "name": "RED DISH",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw",
+          "mode": "list",
+          "cachedResultName": "Order Details",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet: Customer Requests",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email Sent": "SENT",
+            "Order ID": "={{ $('Google Sheets Trigger1').item.json['Order ID'] }}"
+          },
+          "matchingColumns": [
+            "Order ID"
+          ],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Order ID",
+              "displayName": "Order ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Order Type",
+              "displayName": "Order Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Spice Level",
+              "displayName": "Spice Level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Contact Method",
+              "displayName": "Contact Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Email Sent",
+              "displayName": "Email Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2112,
+        576
+      ],
+      "id": "f07a9fa1-b7a6-4275-85b9-1f485ef0abf5",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3lztFhS6IZSvBPKd",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "678d7b4b-fcbc-45e8-97db-21ac823c8cf1",
+              "leftValue": "={{ $json['Order Type'] }}",
+              "rightValue": "Delivery",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "d76a4736-9b3c-46aa-a25f-e482930b9777",
+              "leftValue": "={{ $json.Status }}",
+              "rightValue": "DONE",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        1616,
+        576
+      ],
+      "id": "a5d5052f-4ffb-4667-a988-c67f8566f530",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "*"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -320,
+        128
+      ],
+      "id": "7946f3e3-2cbd-4110-b43e-085699c246b2",
+      "name": "Telegram Trigger",
+      "webhookId": "3b66a50b-75dc-47e6-bb7b-acc42a6f6bc6",
+      "credentials": {
+        "telegramApi": {
+          "id": "PPZPVcP8cLj1tt3d",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Get row(s) in sheet1').item.json['Email Address'] }}",
+        "subject": "=Your RED DISH Order #{{order_id}} is Blazing Hot!",
+        "message": "=\"Hello {{Customer_Name}},  Your order is officially IN THE OVEN! Get your cold water ready because things are about to get spicy.  Your Blazing Details:  Order ID: {{order_id}}  Items: {{items_list}}  Total Heat: {{total_price}} EGP  Stay Bold, RED DISH Team \n Where Fire Meets Flavor\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2288,
+        128
+      ],
+      "id": "76e76b14-5786-40fa-a510-66784ee1e873",
+      "name": "Send a message2",
+      "webhookId": "cb2d0fa3-cea9-492c-9334-51e1c6c90f59",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "HA46VvB046pVVb2V",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1sUNp0bkZLAAI9GxYnEUtnnNJ-NQAeGFwvqKQeIayKW0",
+          "mode": "list",
+          "cachedResultName": "customer info",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sUNp0bkZLAAI9GxYnEUtnnNJ-NQAeGFwvqKQeIayKW0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 538790653,
+          "mode": "list",
+          "cachedResultName": "info",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sUNp0bkZLAAI9GxYnEUtnnNJ-NQAeGFwvqKQeIayKW0/edit#gid=538790653"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1440,
+        128
+      ],
+      "id": "8d3ea0bf-e96b-4a9c-a63c-38503e89a3ed",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3lztFhS6IZSvBPKd",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw",
+          "mode": "list",
+          "cachedResultName": "Order Details",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet: Customer Requests",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Order ID": "={{ $('Get row(s) in sheet1').item.json['Order ID'] }}",
+            "Status": "working on"
+          },
+          "matchingColumns": [
+            "Order ID"
+          ],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Order ID",
+              "displayName": "Order ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Order Type",
+              "displayName": "Order Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Spice Level",
+              "displayName": "Spice Level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Contact Method",
+              "displayName": "Contact Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email Sent",
+              "displayName": "Email Sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2064,
+        128
+      ],
+      "id": "0fec0580-374d-41fb-8f4d-b4bf7a3bc5bf",
+      "name": "Update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3lztFhS6IZSvBPKd",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw",
+          "mode": "list",
+          "cachedResultName": "Order Details",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet: Customer Requests",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit#gid=0"
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1648,
+        128
+      ],
+      "id": "8d2b7b41-9acb-4bfd-a8c6-c381adb0b958",
+      "name": "Get row(s) in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3lztFhS6IZSvBPKd",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw",
+          "mode": "list",
+          "cachedResultName": "Order Details",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1467853691,
+          "mode": "list",
+          "cachedResultName": "Sheet: Orders Details",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit#gid=1467853691"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Order ID",
+              "displayName": "Order ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Item",
+              "displayName": "Item",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Quantity",
+              "displayName": "Quantity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Price",
+              "displayName": "Price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Total",
+              "displayName": "Total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        976,
+        240
+      ],
+      "id": "1e338a04-6f38-431f-bdc2-c7db67e0dc10",
+      "name": "Append row in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "3lztFhS6IZSvBPKd",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "ORDER NOW",
+                    "rightValue": "={{ $('Telegram Trigger').item.json.message.text }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "1ddf9f00-3a49-4ea7-be1d-418fe5e0a7fe"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ORDER NOW"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c842b0df-98af-46dd-b30f-fb8480756943",
+                    "leftValue": "MENU",
+                    "rightValue": "={{ $('Telegram Trigger').item.json.message.text }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "MENU"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "662c1e7a-c50e-431d-b8da-c55a7be20121",
+                    "leftValue": "Q/As",
+                    "rightValue": "={{ $('Telegram Trigger').item.json.message.text }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Q/As"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        32,
+        112
+      ],
+      "id": "ed17d189-7e34-4cc2-8a87-91f84f4cb68b",
+      "name": "Switch",
+      "alwaysOutputData": false,
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "chatId": "998064518",
+        "text": "=Welcome to RED DISH! {{ $json.callback_query.from.first_name }} Do you want to order or see the menu?",
+        "replyMarkup": "replyKeyboard",
+        "replyKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Q/As",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "MENU",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "ORDER NOW",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "replyKeyboardOptions": {},
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -144,
+        128
+      ],
+      "id": "baa9f1cb-e182-47b2-ad1b-a1e58475bc47",
+      "name": "Send a text message1",
+      "webhookId": "f0cdc626-ef06-4a7f-9622-630ed58a7bdd",
+      "credentials": {
+        "telegramApi": {
+          "id": "PPZPVcP8cLj1tt3d",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "998064518",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        528,
+        640
+      ],
+      "id": "560b373c-105f-4ffa-91bd-192d4609759b",
+      "name": "Send a text message2",
+      "webhookId": "4b673d09-3132-4b4c-b984-6e219ea46588",
+      "credentials": {
+        "telegramApi": {
+          "id": "PPZPVcP8cLj1tt3d",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Get row(s) in sheet1').item.json['Email Address'] }}",
+        "subject": "=Your Spicy Mission is Complete! 🔥 #{{ $('Get row(s) in sheet2').item.json['Order ID'] }}",
+        "message": "=Stay Bold, {{ $('Get row(s) in sheet2').item.json['Customer Name'] }}!\n\nWe are thrilled to have served you today. Your spicy mission #{{ $('Get row(s) in sheet2').item.json['Order ID'] }} has been successfully delivered! 🌶️\n\nWe hope the heat was just right and the flavor was legendary. But wait—we want to know exactly how hot it was! Did we hit the spot, or do we need to crank up the flames?\n\nHelp us sharpen our fire by filling out this quick feedback form:\n👉 Rate Your Experience Here!\n\nNext time, don't just order it—come experience the fire in person at our restaurant! See you soon at the heat zone.\n\nStay Spicy,\nRED DISH Team Where Fire Meets Flavor 🍟🔥",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1936,
+        576
+      ],
+      "id": "81617671-91d6-4e30-a532-fdd346c5255a",
+      "name": "Send a message3",
+      "webhookId": "5cc66e07-2704-4bd3-ab42-b8f8bd6c53d5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "jEUI0IrdsZrq2vuY",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://i.postimg.cc/76NNypQj/RED-DISH-MENU.png",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        304,
+        272
+      ],
+      "id": "f9372267-efbf-4517-96f1-0f43a0a4aaf1",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "998064518",
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        352,
+        832
+      ],
+      "id": "4d584e18-8a82-44f8-9b9e-071bf542b808",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "content": "1 Order Flow & Chatbot\n\nTrigger: Telegram message (e.g., /start).\n\nAction: Automated greeting with interactive buttons for Menu, Order, and Support.\n\nGoal: Capture User ID and initiate the customer journey.",
+        "width": 592
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -416,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "dda824d6-2127-42ca-8f2d-9326bf4c7047",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "2 Menu Delivery\n\nTrigger: User selects \"View Menu.\"\n\nAction: Send the high-quality \"RED DISH\" menu image via Binary upload.\n\nContent: Attached caption with item names, prices, and an \"Order Now\" button.",
+        "width": 560
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        256,
+        448
+      ],
+      "typeVersion": 1,
+      "id": "5101190a-abf4-4175-b874-640b47d78162",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "3 FAQ & Support\n\nLogic: Keyword filtering (Switch/If nodes).\n\nAction: Instant answers for common questions (Opening hours, branches, spice levels).\n\nGoal: Reduce manual support and provide 24/7 assistance.",
+        "height": 144,
+        "width": 608
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        752,
+        688
+      ],
+      "typeVersion": 1,
+      "id": "9d40c11f-3c39-48bb-9f49-9c4d2713a159",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are the \"RED DISH Fire-Assistant,\" a professional, helpful, and high-energy AI agent for RED DISH restaurant. Your goal is to provide a seamless dining experience through Telegram.\n\n### YOUR PERSONALITY:\n- High-energy, welcoming, and slightly \"spicy\" (use fire emojis 🔥).\n- Professional yet friendly, like a top-tier restaurant manager.\n\n### YOUR TASKS:\n1. Q&A MODE: Answer questions about RED DISH (Location, Hours, Spicy levels). \n2. RECOMMENDATION MODE: Help customers choose meals based on their spicy tolerance (Mild, Hot, Extreme).\n3. ORDERING ASSISTANT: Guide the customer to provide their Name, Address, and Order details.\n\n### OPERATIONAL RULES:\n- If the customer asks for the menu, remind them they can click the \"MENU\" button.\n- Be concise. Use bullet points for orders.\n- Always confirm the final order details before finishing.\n- For complaints, say: \"I'm escalating this to our Fire-Manager immediately! 🚒\"\n\n### RESTAURANT DATA:\n- Location: Shebeen El-Kom, Menofia.\n- Specialty: Spicy Grilled Chicken and Fire Burgers.\n- Opening Hours: 12:00 PM to 12:00 AM.\n\n### CURRENT CONVERSATION:\nThe user just said: {{ $('Telegram Trigger').item.json.message.text }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        256,
+        640
+      ],
+      "id": "bff8873c-6a34-413e-8444-0e85029a1a33",
+      "name": "FAQ & Support"
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "=998064518",
+        "binaryData": true,
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        512,
+        272
+      ],
+      "id": "e8d854ad-0a32-420c-a05f-1b524770f596",
+      "name": "Send a Menu message",
+      "webhookId": "a23b9d31-694b-46b2-933f-850fefca2d4d",
+      "credentials": {
+        "telegramApi": {
+          "id": "PPZPVcP8cLj1tt3d",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are the official AI ordering assistant for RED DISH, a bold and modern spicy food restaurant. \n\n### CORE IDENTITY:\n- Restaurant Name: RED DISH\n- Slogan: \"Where Fire Meets Flavor\" 🔥\n- Tone: High-energy, professional, helpful, and bold.\n\n### BEHAVIOR RULES:\n1. HYBRID INPUT HANDLING: You receive input via typing or buttons. Treat both as direct user commands.\n2. GUIDED ORDERING: Guide the customer step-by-step. Ask ONLY one clear question at a time (e.g., Name first, then Order).\n3. BUTTONS: If the input matches a category (Signature Dishes, Challenge Meals, etc.), immediately display its items and prices from the menu below.\n4. NO REPETITION: Once the user provides their name or starts ordering, NEVER repeat the welcome message.\n5. ORDER VALIDATION: Never finalize an order unless the customer clearly confirms the final summary.\n\n### TOOL USAGE (GOOGLE SHEETS):\n- Tool Name: 'Append_row_in_sheet'\n- Action: Trigger this tool ONLY when the customer explicitly says \"Yes\" or \"Confirm\" to the Final Order Summary.\n- Data: Record the Name, Items (with Spice/Qty), and Total Price.\n\n### OFFICIAL MENU:\n\nCategory: Signature Dishes\n- Volcano Chicken Bowl (120 EGP) | Inferno Beef Wrap (135 EGP) | Red Fire Wings (95 EGP) | Spicy Chicken Sandwich (110 EGP)\n\nCategory: Challenge Meals\n- Dragon Fire Burger (145 EGP) | Hell Bowl (140 EGP) | Red Dish Challenge Plate (160 EGP)\n\nCategory: Sides\n- Spicy Fries (45 EGP) | Loaded Fire Fries (65 EGP) | Jalapeño Cheese Bites (70 EGP) | Onion Rings (40 EGP)\n\nCategory: Drinks\n- Cola (25 EGP) | Lemon Mint (35 EGP) | Ice Tea (35 EGP) | Milkshake (45 EGP)\n\n### ORDER SUMMARY FORMAT:\nCustomer Name: [name]\nItems:\n1. [Item Name] — [Spice Level] — Qty: [x] — [line total] EGP\nTotal: [total] EGP\nAsk: “Would you like to confirm your order?”\n\n### INITIAL STATE:\nIf the user's session is new, start with:\n“🔥 Welcome to RED DISH — Where Fire Meets Flavor! I’m here to help you place your order. What’s your name?”\n{{ $json.message?.text || $json.callback_query?.data }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        768,
+        112
+      ],
+      "id": "36068db7-dceb-486d-9bad-9db648255cc3",
+      "name": "Order Flow & Chatbot"
+    },
+    {
+      "parameters": {
+        "content": "4 Data Logging & Chef Notification\n\nGoogle Sheets: Log customer details, order items, and total price.\n\nChef Alert: Send a specific summary message to the \"Kitchen Bot\" once the order is confirmed.",
+        "height": 128,
+        "width": 592
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1520,
+        -16
+      ],
+      "typeVersion": 1,
+      "id": "69132d67-dada-4da8-b6fc-9a78e461c6e3",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Signature Dishes",
+                    "additionalFields": {
+                      "callback_data": "Signature Dishes"
+                    }
+                  },
+                  {
+                    "text": "Challenge Meals",
+                    "additionalFields": {
+                      "callback_data": "Challenge Meals"
+                    }
+                  },
+                  {
+                    "text": "Sides",
+                    "additionalFields": {
+                      "callback_data": "Sides"
+                    }
+                  },
+                  {
+                    "text": "Drinks",
+                    "additionalFields": {
+                      "callback_data": "Drinks"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1120,
+        144
+      ],
+      "id": "4d601bd6-ff21-475b-b90d-1e6e0da663cd",
+      "name": "Send a order message",
+      "webhookId": "f0cdc626-ef06-4a7f-9622-630ed58a7bdd",
+      "credentials": {
+        "telegramApi": {
+          "id": "PPZPVcP8cLj1tt3d",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "islamelhamoli@gmail.com",
+        "subject": "=🔥 NEW ORDER INBOUND! - {{ $json['Order ID'] }}]",
+        "message": "=\"Heads up, Chef!  A new challenger has entered the heat zone. We have a fresh order that needs your magic touch.  Order Details:  Order ID: #{{ $json['Order ID'] }} Customer Name: {{ $json['Customer Name'] }} Spice Priority:  Heat Level: {{ $json['Spice Level'] }} 🔥  Order Time: {{ $json.Timestamp }}  Get it blazing hot and ready for delivery!  Stay Spicy, RED DISH Order System\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1904,
+        128
+      ],
+      "id": "39e3c618-3464-4f44-8a5a-af170fc0d563",
+      "name": "Send a Chef message",
+      "webhookId": "e29d2a55-4aa9-4a30-8d80-d4d9242ad0c2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "jEUI0IrdsZrq2vuY",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "\n5 Post-Delivery Feedback Loop\nTrigger & Delay: Executed 60 minutes after order completion to ensure the customer has finished their meal before requesting feedback.\n\nEngagement: Automatically sends a follow-up message (via Gmail/Telegram) to collect feedback and drive Customer Retention.\n\nAI Analysis (LLM Chain): Processes raw feedback to classify sentiment and perform Root Cause Analysis (RCA).\n\nSmart Routing (Switch): Automatically dispatches alerts based on AI findings:\n\nKITCHEN: For food quality issues.\n\nDELIVERY: For speed or handling issues.\n\nMANAGER: For critical escalations.\n\nGoal: Convert qualitative feedback into structured data in Google Sheets for real-time quality monitoring and business growth.",
+        "height": 400,
+        "width": 624
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2464,
+        320
+      ],
+      "typeVersion": 1,
+      "id": "451e8ef9-1115-4a83-9be0-fd39a9cc69e7",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "amount": 60,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1792,
+        576
+      ],
+      "id": "5a718787-872e-4ed5-b684-2d174d91c814",
+      "name": "Wait",
+      "webhookId": "7593c215-433a-48e2-8174-952afd5daeb7"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.text }}",
+                    "rightValue": "POSITIVE",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "35412810-fc5b-4d46-9d4a-7a2ec7da9e88"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ALL GOOD"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "31123b8e-d474-489e-8d09-665c658cb05f",
+                    "leftValue": "={{ $json.text }}",
+                    "rightValue": "NEGATIVE_KITCHEN",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NEGATIVE_KITCHEN"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "7327a9a4-881e-471a-a712-5ce2902627a9",
+                    "leftValue": "={{ $json.text }}",
+                    "rightValue": "NEGATIVE_DELIVERY",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NEGATIVE_DELIVERY"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b939e123-5113-414a-b005-1be091d1f130",
+                    "leftValue": "={{ $json.text }}",
+                    "rightValue": "NEGATIVE_BOTH",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NEGATIVE_BOTH"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        2176,
+        736
+      ],
+      "id": "2f195378-b004-4ce9-88cb-06187bc1483c",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw",
+          "mode": "list",
+          "cachedResultName": "Order Details",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 265260133,
+          "mode": "list",
+          "cachedResultName": "Customer Feedback Fiesta!",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HPvZP5ZTshvjT-ehl7Ap7NdwZmdXH0Hai6QbD4XT0hw/edit#gid=265260133"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        1616,
+        768
+      ],
+      "id": "dadece6d-d7ec-418d-b074-c85cbcc95ca8",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "p81BNEOArJGi2UdU",
+          "name": "Google Sheets Trigger account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "islamelhamoli@gmail.com",
+        "subject": "=🔥 NEW ORDER INBOUND! - {{ $json['Order ID'] }}]",
+        "message": "=\"Heads up, Chef!  A new challenger has entered the heat zone. We have a fresh order that needs your magic touch.  Order Details:  Order ID: #{{ $json['Order ID'] }} Customer Name: {{ $json['Customer Name'] }} Spice Priority:  Heat Level: {{ $json['Spice Level'] }} 🔥  Order Time: {{ $json.Timestamp }}  Get it blazing hot and ready for delivery!  Stay Spicy, RED DISH Order System\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2528,
+        752
+      ],
+      "id": "4073902a-f97a-4f53-be25-fc81e02b19fe",
+      "name": "Send a Chef FEEDBACK message",
+      "webhookId": "e29d2a55-4aa9-4a30-8d80-d4d9242ad0c2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "jEUI0IrdsZrq2vuY",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "islamelhamoli@gmail.com",
+        "subject": "=🔥 NEW ORDER INBOUND! - {{ $json['Order ID'] }}]",
+        "message": "=\"Heads up, Chef!  A new challenger has entered the heat zone. We have a fresh order that needs your magic touch.  Order Details:  Order ID: #{{ $json['Order ID'] }} Customer Name: {{ $json['Customer Name'] }} Spice Priority:  Heat Level: {{ $json['Spice Level'] }} 🔥  Order Time: {{ $json.Timestamp }}  Get it blazing hot and ready for delivery!  Stay Spicy, RED DISH Order System\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2672,
+        784
+      ],
+      "id": "6fba4ae6-101b-4b10-a4f8-99b694262788",
+      "name": "Send a Delivery FEEDBACK message1",
+      "webhookId": "e29d2a55-4aa9-4a30-8d80-d4d9242ad0c2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "jEUI0IrdsZrq2vuY",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "islamelhamoli@gmail.com",
+        "subject": "=🔥 NEW ORDER INBOUND! - {{ $json['Order ID'] }}]",
+        "message": "=\"Heads up, Chef!  A new challenger has entered the heat zone. We have a fresh order that needs your magic touch.  Order Details:  Order ID: #{{ $json['Order ID'] }} Customer Name: {{ $json['Customer Name'] }} Spice Priority:  Heat Level: {{ $json['Spice Level'] }} 🔥  Order Time: {{ $json.Timestamp }}  Get it blazing hot and ready for delivery!  Stay Spicy, RED DISH Order System\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2864,
+        816
+      ],
+      "id": "03162b2f-3286-4033-b10b-445cdf683de1",
+      "name": "Send a Maneger FEEDBACK message",
+      "webhookId": "e29d2a55-4aa9-4a30-8d80-d4d9242ad0c2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "jEUI0IrdsZrq2vuY",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a Customer Satisfaction Analyst for RED DISH. Your task is to identify the source of dissatisfaction.\n\n### RULES:\n1. If the Food Rating is 6 or less, output: NEGATIVE_KITCHEN\n2. If the Delivery Rating is 6 or less, output: NEGATIVE_DELIVERY\n3. If BOTH are 6 or less, output: NEGATIVE_BOTH\n4. If everything is good (ratings > 6), output: POSITIVE\n5. CRITICAL: Reply with ONLY the words above. No sentences.\n\n### CUSTOMER DATA:\nFood: {{ $json[\"How was the Food? Rate the SIZZLE factor! (0 = Not spicy enough, 10 = Pure fire!)\"] }}\nDelivery: {{ $json[\"How was the Delivery Service? Rate the speed and care of our Heat Heroes! 🌶️\"] }}\nComparison: {{ $json[\"Compared to your last spicy food experience (any restaurant!), how was your RED DISH meal today?\"] }}\nNotes: {{ $json[\"Any extra notes about your spicy adventure? We're all ears!\"] }}",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        1792,
+        768
+      ],
+      "id": "a5819c92-febd-4302-a4f8-a4e17b18d53b",
+      "name": "FEEDBACK LLM Chain"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "998064518"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        864,
+        320
+      ],
+      "id": "c308469d-6c20-4665-9d3f-99c3e36e3b1f",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        768,
+        1104
+      ],
+      "id": "313efd2b-59ef-445d-8769-cbad7183bbbb",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "X2mlrm9MYAlQ03VW",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet2": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a Chef message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Append row in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "Order Flow & Chatbot",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Order Flow & Chatbot",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "FAQ & Support",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        []
+      ]
+    },
+    "Send a text message2": {
+      "main": [
+        []
+      ]
+    },
+    "Send a message3": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Send a Menu message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "FAQ & Support",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FAQ & Support": {
+      "main": [
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a Menu message": {
+      "main": [
+        []
+      ]
+    },
+    "Order Flow & Chatbot": {
+      "main": [
+        [
+          {
+            "node": "Send a order message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a order message": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a Chef message": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Send a message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "FEEDBACK LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Send a Chef FEEDBACK message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a Delivery FEEDBACK message1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a Maneger FEEDBACK message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FEEDBACK LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Order Flow & Chatbot",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Order Flow & Chatbot",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "FAQ & Support",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "FEEDBACK LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "85052806-8286-47b3-b4e4-e2d785fbf58f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "220d38ad0d9127a32adc69147f41fe9878ee4d8ed86fdf525e5b5b468835b683"
+  },
+  "id": "94e0QUKJDj8RdRLS",
+  "tags": []
+}
