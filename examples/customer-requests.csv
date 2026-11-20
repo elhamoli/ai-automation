@@ -1,0 +1,2 @@
+Timestamp,Order ID,Customer Name,Phone,Address,Order Type,Spice Level,Contact Method,Notes,Status,Email Sent
+2026-01-01T12:00:00Z,DEMO-001,Demo Customer,DEMO-PHONE,Demo address,Delivery,Mild,Email,Synthetic demo record,NEW,

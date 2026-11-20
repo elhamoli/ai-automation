@@ -1,0 +1,3 @@
+Order ID,Customer Name,"How was the Food? Rate the SIZZLE factor! (0 = Not spicy enough, 10 = Pure fire!)",How was the Delivery Service? Rate the speed and care of our Heat Heroes! 🌶️,"Compared to your last spicy food experience (any restaurant!), how was your RED DISH meal today?",Any extra notes about your spicy adventure? We're all ears!
+DEMO-001,Demo Customer,9,9,Better,Synthetic positive example
+DEMO-002,Demo Customer Two,4,4,Worse,Synthetic combined issue
