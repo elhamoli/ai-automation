@@ -41,6 +41,7 @@ Findings below come from static inspection of the latest export. Original workfl
 | Routing | The first Switch matches only `ORDER NOW`, `MENU`, and `Q/As`, without a fallback. | Route subsequent free text and food category callbacks to the correct agent. |
 | Callback data | Expressions often read only `message.text` or `message.chat.id`. | Handle callback data and callback message chat IDs too. |
 | Menu image | Telegram expects binary data; the HTTP node has no explicit file response option. | Configure file response and matching binary property. |
+| Menu host | The external menu image endpoint returned HTTP 503 during review. | Replace it with a reachable image you control; see [the preserved menu text](MENU.md). |
 | Order writes | The append tool has an empty `columns.value` mapping. | Map confirmed items and totals; verify the tool name exposed to the agent. |
 | Order confirmation | Operations follow the ordering agent's reply, without a deterministic confirmation gate. | Gate writes/notifications on a confirmed, validated order. |
 | Lookups | Customer/order sheet reads have no order-specific filters. | Filter to the confirmed order and customer. |

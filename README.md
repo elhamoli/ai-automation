@@ -1,7 +1,7 @@
 <p align="center"><img src="assets/red-dish-cover.svg" alt="RED DISH — Where Fire Meets Flavor" width="100%" /></p>
 
 <p align="center"><strong>From the first message to the feedback that improves the next meal.</strong><br/>n8n · Telegram · Google Gemini · Google Sheets · Gmail</p>
-<p align="center"><a href="docs/SETUP.md">Setup guide</a> · <a href="docs/ARCHITECTURE.md">Architecture</a> · <a href="docs/DEMO.md">Demo walkthrough</a> · <a href="README.ar.md">بالعربي</a></p>
+<p align="center"><a href="docs/CASE-STUDY.md">Project story</a> · <a href="docs/SETUP.md">Setup guide</a> · <a href="docs/ARCHITECTURE.md">Architecture</a> · <a href="docs/DEMO.md">Demo walkthrough</a> · <a href="README.ar.md">بالعربي</a></p>
 
 ## The idea
 
@@ -26,6 +26,8 @@ Taking an order is only the beginning. Restaurants also need to share menus, ans
 The graphic shows the intended journey. The exported wiring has setup gaps described below and in the architecture guide.
 
 ## Where AI adds value
+
+Read the [project case study](docs/CASE-STUDY.md) for the operational problem, design decisions, and an example customer journey. The [demo menu](docs/MENU.md) preserves the items and prices embedded in the ordering agent's prompt.
 
 - **Guided ordering:** the prompt presents menu items and prices, asks one question at a time, and requests explicit confirmation before using the Sheets tool.
 - **Conversational support:** a dedicated agent uses restaurant details in its prompt to answer questions about hours, location, and spice levels.
@@ -62,6 +64,8 @@ cd ai-automation
 | [`RED DISH last.json`](RED%20DISH%20last.json) | Latest export: **33 nodes**, including five explanatory sticky notes. |
 | [`RED DISH (1).json`](RED%20DISH%20%281%29.json) | Earlier export: **24 nodes**, retained for reference. |
 | [`docs/SETUP.md`](docs/SETUP.md) | Accounts, sheet headers, and configuration gaps. |
+| [`docs/CASE-STUDY.md`](docs/CASE-STUDY.md) | Project context from LinkedIn, design decisions, and an illustrative order journey. |
+| [`docs/MENU.md`](docs/MENU.md) | The full fictional menu and the original image dependency's availability. |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Actual connections and implementation boundaries. |
 | [`docs/DEMO.md`](docs/DEMO.md) | Walkthrough with expected checks. |
 | [`examples/`](examples/) | Synthetic CSV records for preparing demo sheets. |
@@ -72,6 +76,8 @@ cd ai-automation
 ![Node connection map derived from the latest workflow export](assets/workflow-map.svg)
 
 This diagram uses the exported node positions and connections. Solid lines show execution paths; dashed lines show model, memory, and tool connections. It is a generated map, not a screenshot of a live execution.
+
+[Open the full-size workflow map](assets/workflow-map.svg) to inspect node names and branches.
 
 ## Built by Eslam Elhamouly
 
